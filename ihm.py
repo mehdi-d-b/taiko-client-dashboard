@@ -5,8 +5,6 @@ import panel as pn, holoviews as hv
 from panel.widgets import FloatInput
 
 from utils.frequencemetre import SharedBuffer, Frequencemetre
-from utils.spectrogram import Spectrogram
-from utils.enum_plot import EnumPlot
 
 pn.config.sizing_mode = 'stretch_width'
 hv.extension('bokeh', logo=False)
@@ -26,11 +24,6 @@ HEADERS = {'Content-type': 'application/json'}
 # to avoid having lots of instances all reading data from the redis cache
 shared_buffer = pn.state.as_cached("shared_buffer", SharedBuffer)
 frequencemetre = Frequencemetre(buffer=shared_buffer)
-
-#enum = EnumPlot()
-
-spectrogram = Spectrogram()
-
 
 # Declare widgets
 async def change_sin_amp(event):
