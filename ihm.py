@@ -22,7 +22,17 @@ pn.template.FastListTemplate(
     sidebar=["Use the widgets to change the data."], 
     main=[
         pn.Tabs(
-            ('Sensor data', pn.Row(sensor.view,pn.Column(sensor.param, width=100))),
+            ('Sensor data', 
+             pn.Column(
+                pn.Row(sensor.view),
+                pn.Row(
+                        pn.Column(sensor.param.channel_1_subtraction, sensor.param.channel_1_offset),
+                        pn.Column(sensor.param.channel_2_subtraction, sensor.param.channel_2_offset),
+                        pn.Column(sensor.param.channel_3_subtraction, sensor.param.channel_3_offset),
+                        pn.Column(sensor.param.channel_4_subtraction, sensor.param.channel_4_offset)
+                )
+            )
+            )
         )
     ]
 ).servable();
