@@ -61,7 +61,7 @@ To run the application, follow these steps:
 3. Once the application is launched, open a web browser and navigate to the following URL:
 
    ```
-   http://localhost:5006
+   http://localhost:5006/hmi
    ```
 
    This will display the user interface of the application.
