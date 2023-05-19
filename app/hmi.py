@@ -1,8 +1,4 @@
-import requests
-import asyncio
-
 import panel as pn, holoviews as hv 
-from panel.widgets import FloatInput
 
 from utils.sensor import SharedBuffer, Sensor
 

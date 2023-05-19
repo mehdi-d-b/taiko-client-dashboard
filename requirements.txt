@@ -1,0 +1,7 @@
+panel==0.12.1
+holoviews==1.14.4
+param==1.11.1
+datetime
+pandas
+numpy
+tornado

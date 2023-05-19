@@ -1,5 +1,4 @@
 import param
-import json
 from datetime import datetime, timedelta
 import math
 
@@ -78,6 +77,7 @@ class Sensor(param.Parameterized):
     channel_2_offset = param.Number(0.0, precedence=0)
     channel_3_offset = param.Number(0.0, precedence=0)
     channel_4_offset = param.Number(0.0, precedence=0)
+    
     buffer = param.ClassSelector(class_=SharedBuffer, precedence=-1)
 
     @param.depends(
