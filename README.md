@@ -1,4 +1,4 @@
-# Real-time IoT Dashboard
+# Holoviz Oscilloscope
 
 This application is a real-time IoT dashboard that uses Panel, HoloViews, and Params to display and interact with the data. It fetches data periodically and updates the curves dynamically.
 
@@ -19,7 +19,7 @@ To run the application, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/mehdibouzit/realtime-iot-dashboard-holoviz.git
+   git clone https://github.com/mehdibouzit/holoviz-oscilloscope.git
    ```
 
 2. Install the dependencies:
