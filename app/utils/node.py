@@ -36,8 +36,30 @@ class Node(param.Parameterized):
     @param.depends('mock_param')
     def get_curves(self,data):
         return ( 
-            hv.Curve(data[["timestamp","alloc"]], label='alloc')
+            (
+                hv.Curve(data[["timestamp","system"]], label='system') *
+                hv.Curve(data[["timestamp","iowait"]], label='iowait') *
+                hv.Curve(data[["timestamp","geth"]], label='geth') 
+            ) +
+            (
+                hv.Curve(data[["timestamp","alloc"]], label='alloc') *
+                hv.Curve(data[["timestamp","used"]], label='used') *
+                hv.Curve(data[["timestamp","held"]], label='held') 
+            ) +
+            (
+                hv.Curve(data[["timestamp","read"]], label='read') *
+                hv.Curve(data[["timestamp","write"]], label='write') 
+            ) +
+            (
+                hv.Curve(data[["timestamp","ingress"]], label='ingress') *
+                hv.Curve(data[["timestamp","egress"]], label='egress') 
+            ) +
+            (
+                hv.Curve(data[["timestamp","peers"]], label='peers') *
+                hv.Curve(data[["timestamp","dials"]], label='dials') *
+                hv.Curve(data[["timestamp","serves"]], label='serves') 
             )
+        )
 
     @gen.coroutine
     def get_data(self):
