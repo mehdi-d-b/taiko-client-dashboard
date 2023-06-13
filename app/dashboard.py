@@ -22,8 +22,8 @@ status.extend(('Proposer', proposer_status))
 pn.template.FastListTemplate(
     site="Panel", 
     title="Taiko Client Dashboard", 
-    logo='doc/taiko-icon-mono',
-    favicon='doc/taiko-icon-mono',
+    logo='doc/taiko-icon-mono.png',
+    #favicon='doc/taiko-icon-mono',
     #accent_base_color='',
     sidebar=[*status], 
     main=[

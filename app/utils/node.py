@@ -1,9 +1,10 @@
 import param
-import datetime.datetime
+from datetime import datetime
 import requests
 import holoviews as hv 
 import pandas as pd, numpy as np
 from holoviews.streams import Buffer
+import random
 
 from tornado.ioloop import PeriodicCallback
 from tornado import gen
@@ -13,21 +14,21 @@ class Node(param.Parameterized):
     mock_param = param.Number(0.0, precedence=0)
 
     df = pd.DataFrame({
-                       'timestamp': np.array([]),
-                       'system': np.array([]),
-                       'iowait': np.array([]),
-                       'geth': np.array([]),
-                       'alloc': np.array([]),
-                       'used': np.array([]),
-                       'held': np.array([]),
-                       'read': np.array([]),
-                       'write': np.array([]),
-                       'ingress': np.array([]),
-                       'egress': np.array([]),
-                       'peers': np.array([]),
-                       'dials': np.array([]),
-                       'serves': np.array([])})
-    df.set_index('timestamp', inplace=True)
+            'timestamp': np.array([]),
+            'system': np.array([]),
+            'iowait': np.array([]),
+            'geth': np.array([]),
+            'alloc': np.array([]),
+            'used': np.array([]),
+            'held': np.array([]),
+            'read': np.array([]),
+            'write': np.array([]),
+            'ingress': np.array([]),
+            'egress': np.array([]),
+            'peers': np.array([]),
+            'dials': np.array([]),
+            'serves': np.array([])})
+    #df.set_index('timestamp', inplace=True)
 
     buffer = Buffer(data=df, length=1000)
     
@@ -81,11 +82,32 @@ class Node(param.Parameterized):
             'serves': [data["p2p/serves.count"]]})
         )
     
+
+    @gen.coroutine
+    def get_random_data(self):
+        # Get the tags
+        self.buffer.send(pd.DataFrame({
+            'timestamp': [datetime.now()],
+            'system': [random.randint(1, 10)],
+            'iowait': [random.randint(1, 10)],
+            'geth': [random.randint(1, 10)],
+            'alloc': [random.randint(1, 10)],
+            'used': [random.randint(1, 10)],
+            'held': [random.randint(1, 10)],
+            'read': [random.randint(1, 10)],
+            'write': [random.randint(1, 10)],
+            'ingress': [random.randint(1, 10)],
+            'egress': [random.randint(1, 10)],
+            'peers': [random.randint(1, 10)],
+            'dials': [random.randint(1, 10)],
+            'serves': [random.randint(1, 10)]})
+        )
+
     def view(self):
-        PeriodicCallback(self.get_data, 1000*10).start()
+        PeriodicCallback(self.get_random_data, 1000*10).start()
         return hv.DynamicMap(self.get_curves ,streams=[self.buffer]).opts(
              width=1200, 
              height=600,
              title='Node',
-             tools=['hover']
+             #tools=['hover']
         )
