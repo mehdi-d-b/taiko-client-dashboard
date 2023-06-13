@@ -2,6 +2,12 @@
 
 This application is a real-time dashboard for the Taiko Node Client.
 
+![Node](app/doc/screenshots/node.png "Node")
+
+![Proposer](app/doc/screenshots/proposer.png "Proposer")
+
+![Prover](app/doc/screenshots/prover.png "Prover")
+
 ## Dependencies
 
 - Python 3.7+
