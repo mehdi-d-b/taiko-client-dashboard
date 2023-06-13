@@ -6,52 +6,28 @@ from utils.proposer import Proposer
 
 pn.config.sizing_mode = 'stretch_width'
 hv.extension('bokeh', logo=False)
+hv.renderer('bokeh').theme = 'caliber'
 
 node = Node()
 prover = Prover()
 proposer = Proposer()
-    
-hv.renderer('bokeh').theme = 'caliber'
+status = pn.GridBox('', '', ncols=2)
+status.extend(('Prover', pn.indicators.BooleanStatus(width=10, height=10, value=True, color='success')))
+status.extend(('Proposer', pn.indicators.BooleanStatus(width=10, height=10, value=True, color='warning')))
+
 
 pn.template.FastListTemplate(
     site="Panel", 
     title="Taiko Client Dashboard", 
-    sidebar=["Node Status."], 
+    logo='doc/taiko-icon-mono',
+    favicon='doc/taiko-icon-mono',
+    #accent_base_color='',
+    sidebar=[*status], 
     main=[
         pn.Tabs(
-            ('Node', 
-             pn.Column(
-                pn.Row(sensor.view),
-                pn.Row(
-                        pn.Column(sensor.param.channel_1_subtraction, sensor.param.channel_1_offset),
-                        pn.Column(sensor.param.channel_2_subtraction, sensor.param.channel_2_offset),
-                        pn.Column(sensor.param.channel_3_subtraction, sensor.param.channel_3_offset),
-                        pn.Column(sensor.param.channel_4_subtraction, sensor.param.channel_4_offset)
-                )
-            )
-            ),
-            ('Prover', 
-             pn.Column(
-                pn.Row(sensor.view),
-                pn.Row(
-                        pn.Column(sensor.param.channel_1_subtraction, sensor.param.channel_1_offset),
-                        pn.Column(sensor.param.channel_2_subtraction, sensor.param.channel_2_offset),
-                        pn.Column(sensor.param.channel_3_subtraction, sensor.param.channel_3_offset),
-                        pn.Column(sensor.param.channel_4_subtraction, sensor.param.channel_4_offset)
-                )
-            )
-            ),
-            ('Proposer', 
-             pn.Column(
-                pn.Row(sensor.view),
-                pn.Row(
-                        pn.Column(sensor.param.channel_1_subtraction, sensor.param.channel_1_offset),
-                        pn.Column(sensor.param.channel_2_subtraction, sensor.param.channel_2_offset),
-                        pn.Column(sensor.param.channel_3_subtraction, sensor.param.channel_3_offset),
-                        pn.Column(sensor.param.channel_4_subtraction, sensor.param.channel_4_offset)
-                )
-            )
-            ),
+            ('Node', node.view),
+            ('Prover', prover.view),
+            ('Proposer', proposer.view),
         )
     ]
 ).servable();
