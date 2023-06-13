@@ -2,11 +2,11 @@
 
 This application is a real-time dashboard for the Taiko Node Client.
 
-![Node](app/doc/screenshots/node.png "Node")
+![Node](app/doc/screenshots/node.PNG "Node")
 
-![Proposer](app/doc/screenshots/proposer.png "Proposer")
+![Proposer](app/doc/screenshots/proposer.PNG "Proposer")
 
-![Prover](app/doc/screenshots/prover.png "Prover")
+![Prover](app/doc/screenshots/prover.PNG "Prover")
 
 ## Dependencies
 
