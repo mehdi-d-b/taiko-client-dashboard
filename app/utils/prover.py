@@ -25,12 +25,12 @@ class Prover(param.Parameterized):
     
     @param.depends('mock_param')    
     def get_info(self,data):
-        return ( 
+        return hv.Layout( 
             hv.Area(label='Earnings', data=data[["timestamp","earnings"]]) +
             hv.Area(label='Proofs Generated', data=data[["timestamp","proofs_generated"]]) +
             hv.Area(label='ETH left on L1', data=data[["timestamp","eth_left_l1"]]) +
             hv.Area(label='Average proving time', data=data[["timestamp","proving_time"]])
-        )
+        ).cols(2)
 
     @gen.coroutine
     def get_data(self):

@@ -25,11 +25,11 @@ class Proposer(param.Parameterized):
     
     @param.depends('mock_param')    
     def get_info(self,data):
-        return ( 
+        return hv.Layout( 
                 hv.Area(label='Earnings', data=data[["timestamp","earnings"]]) + 
                 hv.Area(label='Blocks Proposed', data=data[["timestamp","blocks_proposed"]]) +
                 hv.Area(label='ETH left on L1', data=data[["timestamp","eth_left_l1"]])
-        )
+        ).cols(2)
 
     @gen.coroutine
     def get_data(self):

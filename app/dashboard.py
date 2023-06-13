@@ -23,8 +23,12 @@ pn.template.FastListTemplate(
     site="Panel", 
     title="Taiko Client Dashboard", 
     logo='doc/taiko-icon-mono.png',
-    #favicon='doc/taiko-icon-mono',
-    #accent_base_color='',
+    favicon='doc/taiko-icon-wht.png',
+    accent_base_color='#ff00ff',
+    header_neutral_color='#ff00ff',
+    neutral_color ='#ff00ff',
+    header_background ='#ff00ff',
+    header_accent_base_color ='#ff00ff',
     sidebar=[*status], 
     main=[
         pn.Tabs(
