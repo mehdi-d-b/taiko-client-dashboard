@@ -26,9 +26,9 @@ class Proposer(param.Parameterized):
     @param.depends('mock_param')    
     def get_info(self,data):
         return hv.Layout( 
-                hv.Area(label='Earnings', data=data[["timestamp","earnings"]]) + 
-                hv.Area(label='Blocks Proposed', data=data[["timestamp","blocks_proposed"]]) +
-                hv.Area(label='ETH left on L1', data=data[["timestamp","eth_left_l1"]])
+                hv.Area(label='Earnings', data=data[["timestamp","earnings"]]).opts(width=600, title="Earnings") + 
+                hv.Area(label='Blocks Proposed', data=data[["timestamp","blocks_proposed"]]).opts(width=600, title="Blocks Proposed") +
+                hv.Area(label='ETH left on L1', data=data[["timestamp","eth_left_l1"]]).opts(width=600, title="ETH left on L1")
         ).cols(2)
 
     @gen.coroutine
@@ -55,7 +55,7 @@ class Proposer(param.Parameterized):
         )
     
     def view(self):
-        PeriodicCallback(self.get_random_data, 1000*10).start()
+        PeriodicCallback(self.get_random_data, 1000*1).start()
         return hv.DynamicMap(self.get_info ,streams=[self.buffer]).opts(
              width=1200, 
              height=600,

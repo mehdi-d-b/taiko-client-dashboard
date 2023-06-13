@@ -26,7 +26,6 @@ pn.template.FastListTemplate(
     favicon='doc/taiko-icon-wht.png',
     accent_base_color='#ff00ff',
     header_neutral_color='#ff00ff',
-    neutral_color ='#ff00ff',
     header_background ='#ff00ff',
     header_accent_base_color ='#ff00ff',
     sidebar=[*status], 

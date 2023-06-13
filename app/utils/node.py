@@ -36,28 +36,28 @@ class Node(param.Parameterized):
     def get_curves(self,data):
         return hv.Layout( 
             (
-                hv.Curve(data[["timestamp","system"]], label='system') *
+                hv.Curve(data[["timestamp","system"]], label='system').opts(width=450) *
                 hv.Curve(data[["timestamp","iowait"]], label='iowait') *
                 hv.Curve(data[["timestamp","geth"]], label='geth') 
-            ) +
+            ).opts(title="CPU") +
             (
-                hv.Curve(data[["timestamp","alloc"]], label='alloc') *
+                hv.Curve(data[["timestamp","alloc"]], label='alloc').opts(width=450) *
                 hv.Curve(data[["timestamp","used"]], label='used') *
                 hv.Curve(data[["timestamp","held"]], label='held') 
-            ) +
+            ).opts(title="Memory") +
             (
-                hv.Curve(data[["timestamp","read"]], label='read') *
+                hv.Curve(data[["timestamp","read"]], label='read').opts(width=450) *
                 hv.Curve(data[["timestamp","write"]], label='write') 
-            ) +
+            ).opts(title="Disk") +
             (
-                hv.Curve(data[["timestamp","ingress"]], label='ingress') *
+                hv.Curve(data[["timestamp","ingress"]], label='ingress').opts(width=450) *
                 hv.Curve(data[["timestamp","egress"]], label='egress') 
-            ) +
+            ).opts(title="Traffic") +
             (
-                hv.Curve(data[["timestamp","peers"]], label='peers') *
+                hv.Curve(data[["timestamp","peers"]], label='peers').opts(width=450) *
                 hv.Curve(data[["timestamp","dials"]], label='dials') *
                 hv.Curve(data[["timestamp","serves"]], label='serves') 
-            )
+            ).opts(title="Peers"),
         ).cols(3)
 
     @gen.coroutine
@@ -104,5 +104,5 @@ class Node(param.Parameterized):
         )
 
     def view(self):
-        PeriodicCallback(self.get_random_data, 1000*10).start()
+        PeriodicCallback(self.get_random_data, 1000*1).start()
         return hv.DynamicMap(self.get_curves ,streams=[self.buffer])
