@@ -1,6 +1,6 @@
-# Holoviz Oscilloscope
+# Taiko Client Dashboard
 
-This application is a real-time IoT dashboard that uses Panel, HoloViews, and Params to display and interact with the data. It fetches data periodically and updates the curves dynamically.
+This application is a real-time dashboard for the Taiko Node Client.
 
 ## Dependencies
 
@@ -19,7 +19,7 @@ To run the application, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/mehdibouzit/holoviz-oscilloscope.git
+   git clone https://github.com/mehdibouzit/taiko-client-dashboard.git
    ```
 
 2. Install the dependencies:
@@ -31,7 +31,7 @@ To run the application, follow these steps:
 3. Build the Docker image (ensure Docker is installed):
 
    ```bash
-   docker build -t hmi .
+   docker build -t dashboard .
    ```
 
 ## Usage with Docker
@@ -39,10 +39,10 @@ To run the application, follow these steps:
 To run the application with Docker, execute the following command:
 
 ```bash
-docker run -p 5006:5006 hmi
+docker run -p 5006:5006 dashboard
 ```
 
-After running the above command, you can access the application by navigating to `http://localhost:5006/hmi` in your web browser.
+After running the above command, you can access the application by navigating to `http://localhost:5006/dashboard` in your web browser.
 
 ## Usage without Docker
 
@@ -53,7 +53,7 @@ To run the application, follow these steps:
 2. From the command line, execute the following command to launch the application:
 
    ```bash
-   panel serve hmi.py
+   panel serve dashboard.py
    ```
 
    Make sure you are in the root directory of the application when running this command.
@@ -61,12 +61,10 @@ To run the application, follow these steps:
 3. Once the application is launched, open a web browser and navigate to the following URL:
 
    ```
-   http://localhost:5006/hmi
+   http://localhost:5006/dashboard
    ```
 
    This will display the user interface of the application.
-
-4. Use the available widgets and controls in the interface to interact with the application and view real-time curves.
 
 ## Contributing
 
