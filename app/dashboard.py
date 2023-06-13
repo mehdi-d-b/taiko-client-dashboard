@@ -11,9 +11,12 @@ hv.renderer('bokeh').theme = 'caliber'
 node = Node()
 prover = Prover()
 proposer = Proposer()
+
+prover_status = pn.indicators.BooleanStatus(width=10, height=10, value=True, color='success')
+proposer_status = pn.indicators.BooleanStatus(width=10, height=10, value=True, color='warning')
 status = pn.GridBox('', '', ncols=2)
-status.extend(('Prover', pn.indicators.BooleanStatus(width=10, height=10, value=True, color='success')))
-status.extend(('Proposer', pn.indicators.BooleanStatus(width=10, height=10, value=True, color='warning')))
+status.extend(('Prover', prover_status))
+status.extend(('Proposer', proposer_status))
 
 
 pn.template.FastListTemplate(
