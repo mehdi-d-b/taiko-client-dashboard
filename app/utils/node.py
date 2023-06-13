@@ -1,6 +1,4 @@
 import param
-import redis
-import json
 import datetime.datetime
 import requests
 import holoviews as hv 
