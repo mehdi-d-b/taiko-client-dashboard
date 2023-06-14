@@ -26,9 +26,9 @@ class Proposer(param.Parameterized):
     @param.depends('mock_param')    
     def get_info(self,data):
         return hv.Layout( 
-                hv.Area(label='Earnings', data=data[["timestamp","earnings"]]).opts(height=400, responsive=True, title="Earnings", labelled=[]) + 
-                hv.Area(label='Blocks Proposed', data=data[["timestamp","blocks_proposed"]]).opts(height=400, responsive=True, title="Blocks Proposed", labelled=[]) +
-                hv.Area(label='ETH left on L1', data=data[["timestamp","eth_left_l1"]]).opts(height=400, responsive=True, title="ETH left on L1", labelled=[])
+                hv.Area(label='Earnings', data=data[["timestamp","earnings"]]).opts(height=400, responsive=True, title="💰 Earnings", labelled=[]) + 
+                hv.Area(label='Blocks Proposed', data=data[["timestamp","blocks_proposed"]]).opts(height=400, responsive=True, title="🧮 Blocks Proposed", labelled=[]) +
+                hv.Area(label='ETH left on L1', data=data[["timestamp","eth_left_l1"]]).opts(height=400, responsive=True, title="⛽ ETH left on L1", labelled=[])
         ).cols(2)
 
     @gen.coroutine

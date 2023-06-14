@@ -19,7 +19,7 @@ proposer_status = pn.Column('Proposer', proposer_indicator, 'Sync')
 
 
 pn.template.FastListTemplate(
-    site="Panel", 
+    #site="Panel", 
     title="Taiko Client Dashboard", 
     logo='doc/taiko-icon-mono.png',
     favicon='doc/taiko-icon-wht.png',
@@ -30,11 +30,11 @@ pn.template.FastListTemplate(
     sidebar=[],
     collapsed_sidebar=True, 
     main=[
-        pn.Row('Prover', prover_indicator, 'Online', 'Proposer', proposer_indicator, 'Sync'),
+        pn.Row('🔮 Prover: 🟢 Online', '👐 Proposer: 🟡 Sync'),
         pn.Tabs(
-            ('Node', node.view),
-            ('Prover', prover.view),
-            ('Proposer', proposer.view),
+            ('🔗 Node', node.view),
+            ('🔮 Prover', prover.view),
+            ('👐 Proposer', proposer.view),
         )
     ]
 ).servable();
