@@ -31,7 +31,7 @@ class Node(param.Parameterized):
             'serves': np.array([])})
     #df.set_index('timestamp', inplace=True)
 
-    buffer = Buffer(data=df, length=1000)
+    buffer = Buffer(data=df, length=120)
     
     @param.depends('mock_param')
     def get_curves(self,data):

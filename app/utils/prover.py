@@ -21,7 +21,7 @@ class Prover(param.Parameterized):
         'eth_left_l1': np.array([])})
     #df.set_index('timestamp', inplace=True)
 
-    buffer = Buffer(data=df, length=1000)
+    buffer = Buffer(data=df, length=120)
     
     @param.depends('mock_param')    
     def get_info(self,data):
