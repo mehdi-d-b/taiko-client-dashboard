@@ -12,11 +12,10 @@ node = Node()
 prover = Prover()
 proposer = Proposer()
 
-prover_status = pn.indicators.BooleanStatus(width=10, height=10, value=True, color='success')
-proposer_status = pn.indicators.BooleanStatus(width=10, height=10, value=True, color='warning')
-status = pn.GridBox('', '', ncols=2)
-status.extend(('Prover', prover_status))
-status.extend(('Proposer', proposer_status))
+prover_indicator = pn.indicators.BooleanStatus(width=10, height=10, value=True, color='success')
+proposer_indicator = pn.indicators.BooleanStatus(width=10, height=10, value=True, color='warning')
+prover_status = pn.Column('Prover', prover_indicator, 'Online')
+proposer_status = pn.Column('Proposer', proposer_indicator, 'Sync')
 
 
 pn.template.FastListTemplate(
@@ -28,8 +27,10 @@ pn.template.FastListTemplate(
     header_neutral_color='#ff00ff',
     header_background ='#ff00ff',
     header_accent_base_color ='#ff00ff',
-    sidebar=[*status], 
+    sidebar=[],
+    collapsed_sidebar=True, 
     main=[
+        pn.Row('Prover', prover_indicator, 'Online', 'Proposer', proposer_indicator, 'Sync'),
         pn.Tabs(
             ('Node', node.view),
             ('Prover', prover.view),

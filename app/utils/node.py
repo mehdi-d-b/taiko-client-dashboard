@@ -5,6 +5,7 @@ import holoviews as hv
 import pandas as pd, numpy as np
 from holoviews.streams import Buffer
 import random
+from holoviews import opts
 
 from tornado.ioloop import PeriodicCallback
 from tornado import gen
@@ -36,28 +37,28 @@ class Node(param.Parameterized):
     def get_curves(self,data):
         return hv.Layout( 
             (
-                hv.Curve(data[["timestamp","system"]], label='system').opts(width=450) *
+                hv.Curve(data[["timestamp","system"]], label='system') * 
                 hv.Curve(data[["timestamp","iowait"]], label='iowait') *
                 hv.Curve(data[["timestamp","geth"]], label='geth') 
-            ).opts(title="CPU") +
+            ).opts(title="CPU", responsive=True, height=400,legend_position='top_left', labelled=[]).opts(opts.Curve(tools=['vline'],)) +
             (
-                hv.Curve(data[["timestamp","alloc"]], label='alloc').opts(width=450) *
+                hv.Curve(data[["timestamp","alloc"]], label='alloc') *
                 hv.Curve(data[["timestamp","used"]], label='used') *
                 hv.Curve(data[["timestamp","held"]], label='held') 
-            ).opts(title="Memory") +
+            ).opts(title="Memory", responsive=True, height=400,legend_position='top_left', labelled=[] ).opts(opts.Curve(tools=['vline'],)) +
             (
-                hv.Curve(data[["timestamp","read"]], label='read').opts(width=450) *
-                hv.Curve(data[["timestamp","write"]], label='write') 
-            ).opts(title="Disk") +
+                hv.Area(data[["timestamp","read"]], label='read') *
+                hv.Area(data[["timestamp","write"]], label='write') 
+            ).opts(title="Disk", responsive=True, height=400,legend_position='top_left', labelled=[]).opts(opts.Area(tools=['vline'],fill_alpha=0.5)) +
             (
-                hv.Curve(data[["timestamp","ingress"]], label='ingress').opts(width=450) *
+                hv.Curve(data[["timestamp","ingress"]], label='ingress') * 
                 hv.Curve(data[["timestamp","egress"]], label='egress') 
-            ).opts(title="Traffic") +
+            ).opts(title="Traffic", responsive=True, height=400,legend_position='top_left', labelled=[]).opts(opts.Curve(tools=['vline'],)) +
             (
-                hv.Curve(data[["timestamp","peers"]], label='peers').opts(width=450) *
+                hv.Curve(data[["timestamp","peers"]], label='peers') * 
                 hv.Curve(data[["timestamp","dials"]], label='dials') *
                 hv.Curve(data[["timestamp","serves"]], label='serves') 
-            ).opts(title="Peers"),
+            ).opts(title="Peers", responsive=True, height=400,legend_position='top_left', labelled=[]).opts(opts.Curve(tools=['vline'],)),
         ).cols(3)
 
     @gen.coroutine
